@@ -1,0 +1,443 @@
+/* 
+ * Animations Stylesheet for NutriBloom 
+ * A healthy vegetarian food website
+ */
+
+/* Keyframes */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Applied Animations */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.spin {
+  animation: spin 10s linear infinite;
+}
+
+.bounce {
+  animation: bounce 2s ease infinite;
+}
+
+/* Elements with animations */
+.hero-section .btn:hover {
+  animation: pulse 1s ease;
+}
+
+.about-img-leaf {
+  animation: float 3s ease-in-out infinite;
+}
+
+.menu-item:hover .menu-item-img img {
+  transform: scale(1.05);
+}
+
+.value-item i {
+  transition: all 0.3s ease;
+}
+
+.value-item:hover i {
+  transform: scale(1.2);
+  color: var(--accent-color);
+}
+
+/* Scroll-triggered animations */
+[data-aos="custom-fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-aos="custom-fade-right"] {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-right"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-aos="custom-fade-left"] {
+  opacity: 0;
+  transform: translateX(30px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-left"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-aos="custom-zoom-in"] {
+  opacity: 0;
+  transform: scale(0.9);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-zoom-in"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Menu tab transitions */
+.tab-pane {
+  transition: all 0.3s ease;
+}
+
+.tab-pane.fade {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.tab-pane.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button hover animations */
+.btn {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: -2;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+/* Menu item hover effect */
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(76, 175, 80, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+}
+
+/* Loading animation */
+.loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loading div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.loading div:nth-child(1) {
+  left: 8px;
+  animation: loading1 0.6s infinite;
+}
+
+.loading div:nth-child(2) {
+  left: 8px;
+  animation: loading2 0.6s infinite;
+}
+
+.loading div:nth-child(3) {
+  left: 32px;
+  animation: loading2 0.6s infinite;
+}
+
+.loading div:nth-child(4) {
+  left: 56px;
+  animation: loading3 0.6s infinite;
+}
+
+@keyframes loading1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loading3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes loading2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* Ripple effect for buttons */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.btn-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Wave animation for decorative elements */
+.wave {
+  animation: wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform-origin: center;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-5px, 0);
+  }
+  25% {
+    transform: translate(5px, -5px);
+  }
+  50% {
+    transform: translate(10px, 5px);
+  }
+  75% {
+    transform: translate(-5px, 10px);
+  }
+  100% {
+    transform: translate(-5px, 0);
+  }
+}
+
+/* Shimmer effect for special elements */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+  transform: skewX(-20deg);
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Rotating icons */
+.rotating-icon {
+  display: inline-block;
+  animation: spin 10s linear infinite;
+}
+
+/* Page transition effects */
+.page-transition {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Hover effects for links */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Scale animation on hover */
+.scale-on-hover {
+  transition: transform 0.3s ease;
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Special highlighting effect */
+.highlight-container {
+  position: relative;
+}
+
+.highlight {
+  position: relative;
+  z-index: 1;
+}
+
+.highlight::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -0.25em;
+  right: -0.25em;
+  background-color: var(--accent-light);
+  transform-origin: center right;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.highlight:hover::before {
+  transform: scaleX(1);
+  transform-origin: center left;
+}
+
+/* Staggered animations for lists */
+.stagger-item {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
